@@ -1,0 +1,16 @@
+---
+description: TypeScript Conventions
+globs: **/*.ts?(x)
+---
+instructions:
+  - Use strict TypeScript (noImplicitAny, strictNullChecks)
+  - Prefer type over interface
+  - Use Zod for runtime type validation
+  - Avoid type assertions (as Type)
+  - Use workspace path aliases (@workspace/*)
+  - Type all component props explicitly
+  - Enforce module boundary types
+references:
+  - @file:../../tsconfig.json
+  - @file:../../packages/typescript-config/base.json
+  - @file:../../packages/typescript-config/nextjs.json

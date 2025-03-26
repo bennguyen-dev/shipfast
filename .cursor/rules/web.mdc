@@ -1,0 +1,11 @@
+---
+description: Next.js 15 App Router conventions
+globs: apps/web/**/*.tsx
+---
+instructions:
+  - Use App Router patterns
+  - Prefer React Server Components
+  - API routes follow Next.js 15 standards
+  - Implement ISR/SSG where appropriate
+references:
+  - https://nextjs.org/docs/app

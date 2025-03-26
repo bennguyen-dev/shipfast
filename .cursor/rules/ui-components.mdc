@@ -1,0 +1,12 @@
+---
+description: shadcn/ui Component Standards
+globs: packages/ui/**/*.tsx
+---
+instructions:
+  - Build on Radix UI primitives
+  - Use CVA for variants
+  - Type props with Zod schemas
+  - Compose classes with cn() utility
+references:
+  - @file:../../packages/ui/components.json
+  - https://ui.shadcn.com/docs/components/overview

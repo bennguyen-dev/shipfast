@@ -1,0 +1,16 @@
+---
+description: ESLint Standards
+globs: **/*.ts?(x)
+---
+instructions:
+  - Follow @workspace/eslint-config rules
+  - Use turbo plugin for env var validation
+  - Prefer functional components
+  - Use react-hooks/exhaustive-deps
+  - No console.log in production code
+  - Class composition with cn() utility
+  - Fix auto-fixable errors with pnpm lint:fix
+references:
+  - @file:../../packages/eslint-config/package.json
+  - @file:../../packages/ui/eslint.config.js
+  - @file:../../apps/web/eslint.config.js

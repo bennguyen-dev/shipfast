@@ -1,0 +1,13 @@
+---
+description: Turborepo Conventions
+globs: **/*
+---
+ instructions:
+  - Use workspace:* imports
+  - Share configs via @workspace packages
+  - Follow turbo.json pipeline
+  - ES modules everywhere
+references:
+  - @file:../../pnpm-workspace.yaml
+  - @file:../../turbo.json
+  - https://turbo.build/repo
