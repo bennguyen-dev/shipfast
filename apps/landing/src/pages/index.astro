@@ -1,0 +1,28 @@
+---
+import { Button } from "@workspace/ui/components/button"
+import '@workspace/ui/globals.css';
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro</title>
+	</head>
+	<body>
+		<h1 class="text-3xl font-bold">Landing Page</h1>
+		<div class="flex flex-wrap gap-4 justify-center">
+			<Button client:load>
+				Get Started
+			</Button>
+			<Button variant="outline" client:load>
+				Learn More
+			</Button>
+			<Button variant="secondary" client:load>
+				Documentation
+			</Button>
+		</div>
+	</body>
+</html>
