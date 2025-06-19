@@ -1,0 +1,161 @@
+---
+import { Button } from "@workspace/ui/components/button";
+---
+
+<header
+  class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div class="@container w-full">
+    <div class="flex h-14 items-center justify-between px-4 @sm:px-6 w-full">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex items-center space-x-2">
+        <span class="inline-flex size-6 items-center justify-center rounded-full bg-primary">
+          <span class="sr-only">ShipFast</span>
+        </span>
+          <span class="font-semibold">ShipFast</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden @md:flex items-center space-x-6">
+        <a
+          href="#features"
+          class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Features
+        </a>
+        <a
+          href="#pricing"
+          class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Pricing
+        </a>
+        <a
+          href="#testimonials"
+          class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          Testimonials
+        </a>
+        <a
+          href="#faq"
+          class="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+        >
+          FAQ
+        </a>
+      </nav>
+
+      <!-- Auth Buttons -->
+      <div class="flex items-center gap-2">
+        <Button variant="ghost" size="sm" className="hidden @sm:flex" asChild>
+          <a href="/login">
+            Sign In
+          </a>
+        </Button>
+        <Button size="sm" className="hidden @sm:inline-flex" asChild>
+          <a href="/register">
+            Sign Up
+          </a>
+        </Button>
+
+        <!-- Mobile Menu Button -->
+        <Button
+          variant="ghost"
+          size="icon"
+          className="@md:hidden"
+          id="mobile-menu-button"
+          aria-label="Toggle menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="size-4"
+          >
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="6" x2="20" y2="6" />
+            <line x1="4" y1="18" x2="20" y2="18" />
+          </svg>
+        </Button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="hidden border-t @md:hidden" id="mobile-menu">
+      <div class="space-y-1 p-2">
+        <a
+          href="#features"
+          class="block rounded-sm px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+        >
+          Features
+        </a>
+        <a
+          href="#pricing"
+          class="block rounded-sm px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+        >
+          Pricing
+        </a>
+        <a
+          href="#testimonials"
+          class="block rounded-sm px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+        >
+          Testimonials
+        </a>
+        <a
+          href="#faq"
+          class="block rounded-sm px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+        >
+          FAQ
+        </a>
+        <div class="border-t pt-2">
+          <a
+            href="/login"
+            class="block rounded-sm px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
+          >
+            Sign In
+          </a>
+          <Button variant="outline" size="sm" className="mt-2 w-full justify-center" asChild>
+            <a href="/register">
+              Sign Up
+            </a>
+          </Button>
+        </div>
+      </div>
+    </div>
+</header>
+
+<script>
+  // Mobile menu toggle with improved accessibility
+  const menuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  if (menuButton && mobileMenu) {
+    const toggleMenu = () => {
+      const isExpanded = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isExpanded));
+      mobileMenu.classList.toggle("hidden");
+    };
+
+    menuButton.addEventListener("click", toggleMenu);
+
+    // Close menu when clicking outside or pressing Escape
+    document.addEventListener("click", (event) => {
+      if (!menuButton.contains(event?.target) && !mobileMenu.contains(event?.target)) {
+        menuButton.setAttribute("aria-expanded", "false");
+        mobileMenu.classList.add("hidden");
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        menuButton.setAttribute("aria-expanded", "false");
+        mobileMenu.classList.add("hidden");
+      }
+    });
+  }
+</script>

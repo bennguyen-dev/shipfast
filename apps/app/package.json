@@ -1,10 +1,10 @@
 {
-  "name": "web",
+  "name": "app",
   "version": "0.0.1",
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --experimental-https --turbopack ",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,9 +12,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.9.1",
+    "@prisma/client": "^6.10.1",
     "@workspace/ui": "workspace:*",
     "lucide-react": "^0.475.0",
-    "next": "^15.2.0",
+    "next": "15.2.4",
+    "next-auth": "5.0.0-beta.28",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -25,6 +28,10 @@
     "@types/react-dom": "^19",
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
+    "prisma": "^6.10.1",
     "typescript": "^5.7.3"
+  },
+  "prisma": {
+    "schema": "src/prisma/schema-postgres.prisma"
   }
 }
