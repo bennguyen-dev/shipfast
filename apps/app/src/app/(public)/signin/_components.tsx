@@ -21,16 +21,16 @@ export const SignIn = () => {
   return (
     <div className="flex h-full max-w-screen-2xl flex-col items-center py-12 sm:py-24">
       <div className="mb-8">
-        <Image 
-          src="/logo.png" 
-          alt="Logo" 
-          width={64} 
-          height={64} 
-          priority 
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={64}
+          height={64}
+          priority
           className="size-16"
         />
       </div>
-      
+
       <div className="w-full max-w-[24rem] rounded-xl border bg-card p-6 shadow-sm">
         <div className="mb-6 text-center">
           <h1 className="mb-2 text-2xl font-bold tracking-tight">
@@ -40,7 +40,8 @@ export const SignIn = () => {
             </span>
           </h1>
           <p className="text-muted-foreground">
-            Join our community and start generating OG images with 700+ other users
+            Join our community and start generating OG images with 700+ other
+            users
           </p>
         </div>
 
