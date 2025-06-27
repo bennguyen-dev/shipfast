@@ -1,5 +1,8 @@
 ---
 import { Button } from "@workspace/ui/components/button";
+
+// Get environment variables
+const APP_URL = import.meta.env.PUBLIC_APP_URL || "https://localhost:3000";
 ---
 
 <header
@@ -46,16 +49,19 @@ import { Button } from "@workspace/ui/components/button";
 
       <!-- Auth Buttons -->
       <div class="flex items-center gap-2">
-        <Button variant="ghost" size="sm" className="hidden @sm:flex" asChild>
-          <a href="/login">
-            Sign In
-          </a>
-        </Button>
-        <Button size="sm" className="hidden @sm:inline-flex" asChild>
-          <a href="/register">
-            Sign Up
-          </a>
-        </Button>
+        <div id="auth-buttons" class="flex items-center gap-2">
+          <!-- Default buttons (will be replaced by JavaScript) -->
+          <Button variant="ghost" size="sm" className="hidden @sm:flex" asChild>
+            <a href={`${APP_URL}/signin`}>
+              Sign In
+            </a>
+          </Button>
+          <Button size="sm" className="hidden @sm:inline-flex" asChild>
+            <a href={`${APP_URL}/signin`}>
+              Get Started
+            </a>
+          </Button>
+        </div>
 
         <!-- Mobile Menu Button -->
         <Button
@@ -112,16 +118,16 @@ import { Button } from "@workspace/ui/components/button";
         >
           FAQ
         </a>
-        <div class="border-t pt-2">
+        <div class="border-t pt-2" id="mobile-auth-buttons">
           <a
-            href="/login"
+            href={`${APP_URL}/signin`}
             class="block rounded-sm px-3 py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground"
           >
             Sign In
           </a>
           <Button variant="outline" size="sm" className="mt-2 w-full justify-center" asChild>
-            <a href="/register">
-              Sign Up
+            <a href={`${APP_URL}/signin`}>
+              Get Started
             </a>
           </Button>
         </div>
@@ -158,4 +164,59 @@ import { Button } from "@workspace/ui/components/button";
       }
     });
   }
+
+  // Authentication status check and button updates
+  async function checkAuthStatus() {
+    try {
+      const APP_URL = "https://localhost:3000"; // Next.js app URL
+      const response = await fetch(`${APP_URL}/api/auth/status`, {
+        credentials: 'include', // Include cookies for session
+        headers: {
+          'Accept': 'application/json',
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        updateAuthButtons(data.authenticated, APP_URL);
+      } else {
+        // If API call fails, keep default buttons
+        console.warn('Failed to check auth status');
+      }
+    } catch (error) {
+      // If API call fails, keep default buttons
+      console.warn('Error checking auth status:', error);
+    }
+  }
+
+  function updateAuthButtons(isAuthenticated: boolean, appUrl: string) {
+    const desktopAuthButtons = document.getElementById('auth-buttons');
+    const mobileAuthButtons = document.getElementById('mobile-auth-buttons');
+
+    if (isAuthenticated) {
+      // Show Dashboard button for authenticated users
+      if (desktopAuthButtons) {
+        desktopAuthButtons.innerHTML = `
+          <button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2 hidden @sm:inline-flex" onclick="window.location.href='${appUrl}/dashboard'">
+            Dashboard
+          </button>
+        `;
+      }
+
+      if (mobileAuthButtons) {
+        mobileAuthButtons.innerHTML = `
+          <button 
+            onclick="window.location.href='${appUrl}/dashboard'"
+            class="w-full mt-2 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"
+          >
+            Dashboard
+          </button>
+        `;
+      }
+    }
+    // If not authenticated, keep the default buttons (already set in HTML)
+  }
+
+  // Check auth status when page loads
+  document.addEventListener('DOMContentLoaded', checkAuthStatus);
 </script>
