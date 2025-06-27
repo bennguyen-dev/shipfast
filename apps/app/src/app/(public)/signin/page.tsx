@@ -22,14 +22,10 @@ export default async function Page() {
 
           <div className="flex flex-col gap-3">
             <Button asChild>
-              <Link href="/dashboard">
-                Go to Dashboard
-              </Link>
+              <Link href="/dashboard">Go to Dashboard</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/api/auth/signout">
-                Sign Out
-              </Link>
+              <Link href="/api/auth/signout">Sign Out</Link>
             </Button>
           </div>
         </div>

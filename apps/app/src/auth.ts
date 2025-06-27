@@ -28,28 +28,28 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       name: `next-auth.session-token`,
       options: {
         httpOnly: true,
-        sameSite: 'none',
-        path: '/',
-        secure: true
-      }
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
     },
     callbackUrl: {
       name: `next-auth.callback-url`,
       options: {
-        sameSite: 'none',
-        path: '/',
-        secure: true
-      }
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
     },
     csrfToken: {
       name: `next-auth.csrf-token`,
       options: {
         httpOnly: true,
-        sameSite: 'none',
-        path: '/',
-        secure: true
-      }
-    }
+        sameSite: "none",
+        path: "/",
+        secure: true,
+      },
+    },
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
@@ -58,7 +58,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
       // If user is on dashboard but not logged in, redirect to Astro landing
       if (isOnDashboard && !isLoggedIn) {
-        return Response.redirect(new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:4321"));
+        return Response.redirect(
+          new URL(process.env.NEXT_PUBLIC_URL || "http://localhost:4321"),
+        );
       }
 
       // Allow access to signin page for both authenticated and unauthenticated users
